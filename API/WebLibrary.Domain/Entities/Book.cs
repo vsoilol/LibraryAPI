@@ -3,7 +3,7 @@
 namespace WebLibrary.Domain.Entities;
 
 [Table(nameof(Book))]
-public class Book
+public class Book : Entity
 {
     public string Isbn { get; set; } = null!;
 
