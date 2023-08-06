@@ -15,7 +15,7 @@ public class Book
 
     public string Author { get; set; } = null!;
 
-    public DateTime BorrowedTime { get; set; }
+    public DateTime? BorrowedTime { get; set; }
 
-    public DateTime ReturnDueTime { get; set; }
+    public DateTime? ReturnDueTime { get; set; }
 }
