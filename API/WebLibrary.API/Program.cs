@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger();
+builder.Services.AddDataAccessLayer(connectionString);
 builder.Services.AddJwtAuthentication(builder.Configuration);
 
 var app = builder.Build();
