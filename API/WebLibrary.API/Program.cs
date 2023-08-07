@@ -3,11 +3,14 @@ using WebLibrary.API.Configurations;
 using WebLibrary.API.Filters;
 using WebLibrary.BusinessLayer;
 using WebLibrary.DataAccessLayer;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ApiExceptionFilterAttribute>();
+});
 
-builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger();
 
