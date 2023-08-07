@@ -19,7 +19,7 @@ public class _202308060001_InitialTables : AutoReversingMigration
             .WithColumn("Id").AsGuid().NotNullable().PrimaryKey()
             .WithColumn("Isbn").AsString(40).NotNullable()
             .WithColumn("Title").AsString(50).NotNullable()
-            .WithColumn("Genre").AsString(20).NotNullable()
+            .WithColumn("Genre").AsString(50).NotNullable()
             .WithColumn("Description").AsString(200).NotNullable()
             .WithColumn("Author").AsString(50).NotNullable()
             .WithColumn("BorrowedTime").AsDateTime2().Nullable()
