@@ -1,3 +1,8 @@
+using FluentMigrator.Runner;
+using WebLibrary.API.Configurations;
+using WebLibrary.API.Filters;
+using WebLibrary.BusinessLayer;
+using WebLibrary.DataAccessLayer;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,11 +16,18 @@ builder.Services.AddJwtAuthentication(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+var isDevelopment = app.Environment.IsDevelopment();
+
+if (isDevelopment)
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    using var scope = app.Services.CreateScope();
+    var services = scope.ServiceProvider;
+
+    var runner = services.GetRequiredService<IMigrationRunner>();
+    runner.MigrateUp();
 }
 
 app.UseAuthentication();
