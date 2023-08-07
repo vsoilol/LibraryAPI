@@ -6,12 +6,12 @@ namespace WebLibrary.Domain.Entities;
 public class User : Entity
 {
     public string FirstName { get; set; } = null!;
-    
+
     public string LastName { get; set; } = null!;
-    
+
     public string MiddleName { get; set; } = null!;
 
     public string Login { get; set; } = null!;
 
-    public string? PasswordHash { get; set; }
+    public string PasswordHash { get; set; } = null!;
 }
