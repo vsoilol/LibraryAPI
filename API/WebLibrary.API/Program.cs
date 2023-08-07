@@ -10,8 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger();
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
+
 builder.Services.AddDataAccessLayer(connectionString);
+builder.Services.AddBusinessLayer();
+
 builder.Services.AddJwtAuthentication(builder.Configuration);
 
 var app = builder.Build();
