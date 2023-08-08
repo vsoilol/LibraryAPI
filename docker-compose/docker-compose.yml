@@ -1,1 +1,31 @@
-version: '3.8'
+version: "3.8"
+
+services:
+  libraryapi:
+    image: vladsokol/libraryapi
+    restart: "${DOCKER_RESTART_POLICY:-unless-stopped}"
+    build:
+      context: ../API
+      dockerfile: ./WebLibrary.API/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ConnectionStrings__DefaultConnection: ${CONNECTION_STRING}
+      AuthSettings__Secret: ${AUTH_SECRET}
+      AuthSettings__TokenLifetime: ${AUTH_TOKEN_LIFETIME}
+    ports:
+      - "5000:80"
+    depends_on:
+      - database
+
+  database:
+    build: ./mssql
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: ${DATABASE_PASSWORD}
+      ACCEPT_EULA: "Y"
+    volumes:
+      - sqlserverdata:/var/opt/mssql
+
+volumes:
+  sqlserverdata:
